@@ -29,6 +29,11 @@ gem 'jbuilder', '~> 2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'capistrano-rails'
+gem 'capistrano-passenger'
+gem 'pg'
+gem 'geokit-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
