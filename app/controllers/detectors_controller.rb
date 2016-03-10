@@ -1,4 +1,6 @@
 class DetectorsController < ApplicationController
+	skip_before_action :verify_authenticity_token
+
 	def create
 		@detector = Detector.create!(params.require(:detector).permit(:name, :serial_number, :owner, :latitude, :longitude))
 		render :json => @detector.to_json, :status => :created

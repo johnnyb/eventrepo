@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+	skip_before_action :verify_authenticity_token
+
 	def create
 		@detector = Detector.for_identity(params[:serial_number], params[:token]).first
 		@event = @detector.events.create!(params.require(:event).permit(:detected_at, :event_data_base64, :latitude, :longitude))
