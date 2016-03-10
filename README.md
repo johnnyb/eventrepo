@@ -1,24 +1,33 @@
 ## README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an event repository service for collecting events from remote devices. 
+The goal of this service is to allow distributed detection for things that require 
+large distances between individual detectors.
 
-Things you may want to cover:
+This service, as of now, does not do any processing of the data, it merely records any
+event on the device, and leaves it to other services to do interpretation.
 
-* Ruby version
+## API
 
-* System dependencies
+Create Device:
 
-* Configuration
+POST to /devices with parameters: 
+  device[name] = simple name of device
+  device[owner] = name of person in charge of device
+  device[serial_number] = serial number of device
+  device[latitude] = latitude of device
+  device[longitude] = longitude of device
 
-* Database creation
+This returns a JSON object that also has a server-generated token that should be used for future requests.
 
-* Database initialization
+Create Event:
 
-* How to run the test suite
+POST to /events with the parameters:
+  serial_number = serial number of device
+  token = token for device
+  event[event_data_base64] = base64 encoding of event data (it actually can be any string)
+  event[detected_at] = the timestamp on the detector of the event
+  event[latitude] = the latitude of the event (this defaults to latitude of detector if not provided)
+  event[longitude] = the longitude of the event (this defaults to the longitude of detector if not specified)
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Returns a JSON object representing the event
