@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
 	def create
 		@detector = Detector.for_identity(params[:serial_number], params[:token]).first
-		@event = @detector.events.create!(params.require(:event).permit(:detected_at, :event_data_base64, :latitude, :longitude))
+		@event = @detector.events.create!(params.require(:event).permit(:detected_at, :event_data_base64, :latitude, :longitude, :event_type))
 		if @event.latitude.blank?
 			@event.latitude = @detector.latitude
 			@event.longitude = @detector.longitude

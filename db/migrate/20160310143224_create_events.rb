@@ -3,6 +3,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
     create_table :events do |t|
       t.integer :detector_id
       t.timestamp :detected_at
+      t.string :event_type
       t.text :event_data_base64
       t.decimal :latitude
       t.decimal :longitude

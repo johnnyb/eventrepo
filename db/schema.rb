@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20160310143224) do
   create_table "detectors", force: :cascade do |t|
     t.string   "name"
     t.string   "serial_number"
+    t.string   "detector_type"
     t.string   "token"
     t.string   "owner"
     t.decimal  "latitude"
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160310143224) do
   create_table "events", force: :cascade do |t|
     t.integer  "detector_id"
     t.datetime "detected_at"
+    t.string   "event_type"
     t.text     "event_data_base64"
     t.decimal  "latitude"
     t.decimal  "longitude"
